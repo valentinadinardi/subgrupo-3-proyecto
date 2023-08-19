@@ -6,6 +6,12 @@ let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
 
+if(sessionStorage.getItem("usuarioEstaLogueado") == "confirmado") {
+    
+
+
+
+
 function sortCategories(criteria, array){
     let result = [];
     if (criteria === ORDER_ASC_BY_NAME)
@@ -140,4 +146,8 @@ document.addEventListener("DOMContentLoaded", function(e){
 
         showCategoriesList();
     });
-});
+}); } else {
+    window.location.href = "login.html";
+
+}
+

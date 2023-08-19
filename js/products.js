@@ -6,6 +6,10 @@ const apiUrl = "https://japceibal.github.io/emercado-api/cats_products/101.json"
 
 const productListElement = document.getElementById("product-list-container");
 
+if(sessionStorage.getItem("usuarioEstaLogueado") == "confirmado") {
+
+
+
 //función que recibe un array con los datos, y los muestra en pantalla a través del uso del DOM
 function showCategoriesList(array){
     let htmlContentToAppend = "";
@@ -43,4 +47,6 @@ document.addEventListener("DOMContentLoaded", function(e){
             showCategoriesList(categoriesArray);
         }
     });
-});
+});} else {
+    window.location.href = "login.html";
+}

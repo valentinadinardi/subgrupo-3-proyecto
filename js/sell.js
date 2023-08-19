@@ -27,6 +27,11 @@ function updateTotalCosts(){
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
+
+if(sessionStorage.getItem("usuarioEstaLogueado") == "confirmado") {
+
+
+
 document.addEventListener("DOMContentLoaded", function(e){
     document.getElementById("productCountInput").addEventListener("change", function(){
         productCount = this.value;
@@ -146,4 +151,6 @@ document.addEventListener("DOMContentLoaded", function(e){
             });
         }
     });
-});
+});} else {
+    window.location.href = "login.html";
+}
