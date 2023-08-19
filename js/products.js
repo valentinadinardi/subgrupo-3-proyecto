@@ -29,10 +29,10 @@ function showCategoriesList(array){
                 <div class="col">
                     <div class="d-flex w-100 justify-content-between">
                         <div class="mb-1">
-                        <h4>`+ products.soldCount +`</h4> 
+                        <h4>`+ products.name +`</h4> 
                         <p> `+ products.description +`</p> 
                         </div>
-                        <small class="text-muted">` + products.name + ` artículos</small> 
+                        <small class="text-muted">` +products.soldCount  + ` artículos</small> 
                     </div>
 
                 </div>
