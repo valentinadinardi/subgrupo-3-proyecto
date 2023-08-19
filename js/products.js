@@ -22,7 +22,7 @@ function showCategoriesList(array){
                 <div class="col">
                     <div class="d-flex w-100 justify-content-between">
                         <div class="mb-1">
-                            <h4>${products.name} - USD: ${products.cost.toLocaleString()}</h4>
+                            <h4>${products.name} - USD ${products.cost.toLocaleString()}</h4>
                             <p>${products.description}</p>
                         </div>
                         <small class="text-muted">${products.soldCount} vendidos</small>
