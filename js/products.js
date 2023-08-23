@@ -47,6 +47,56 @@ document.addEventListener("DOMContentLoaded", function(e){
             showCategoriesList(categoriesArray);
         }
     });
-});} else {
-    window.location.href = "login.html";
-}
+});
+
+//aca agrego la funcionalidad para los inputs ascendente y descendiente
+
+const ORDER_ASC_BY_NAME = document.getElementById("sortAsc");
+const ORDER_DESC_BY_NAME = document.getElementById("sortDesc");
+const ORDER_BY_PROD_COUNT = document.getElementById("sortByCount");
+let currentCategoriesArray = [];
+let currentSortCriteria = undefined;
+let minCount = undefined;
+let maxCount = undefined;
+let categoriesArray = resultObj.data.products;
+showCategoriesList(categoriesArray);
+
+/*if(ORDER_DESC_BY_NAME.checked){
+    sortProduct(ORDER_DESC_BY_NAME, categoriesArray)
+}*/
+
+    function sortProduct(criteria, array){
+        let result = [];
+        if (criteria === ORDER_ASC_BY_NAME)
+        {
+            result = array.sort(function(a, b) {
+                if ( a.name < b.name ){ return -1; }
+                if ( a.name > b.name ){ return 1; }
+                return 0;
+            });
+        }else if (criteria === ORDER_DESC_BY_NAME){
+            result = array.sort(function(a, b) {
+                if ( a.name > b.name ){ return -1; }
+                if ( a.name < b.name ){ return 1; }
+                return 0;
+            });
+        }else if (criteria === ORDER_BY_PROD_COUNT){
+            result = array.sort(function(a, b) {
+                let aCount = parseInt(a.productCount);
+                let bCount = parseInt(b.productCount);
+    
+                if ( aCount > bCount ){ return -1; }
+                if ( aCount < bCount ){ return 1; }
+                return 0;
+            });
+        }
+        return result;
+        }
+};  
+
+    
+    
+    function setCatID(id) {
+        localStorage.setItem("catID", id);
+        window.location = "products.html"
+    }
