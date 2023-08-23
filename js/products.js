@@ -6,7 +6,7 @@ const apiUrl = "https://japceibal.github.io/emercado-api/cats_products/101.json"
 
 const productListElement = document.getElementById("product-list-container");
 
-if(sessionStorage.getItem("usuarioEstaLogueado") == "confirmado") {
+if(sessionStorage.getItem("usuarioEstaLogueado") == "confirmado");
 
 
 
@@ -58,8 +58,8 @@ let currentCategoriesArray = [];
 let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
-let categoriesArray = resultObj.data.products;
-showCategoriesList(categoriesArray);
+let categoriesArrays = resultObj.data.products;
+showCategoriesList(categoriesArrays);
 
 /*if(ORDER_DESC_BY_NAME.checked){
     sortProduct(ORDER_DESC_BY_NAME, categoriesArray)
@@ -91,8 +91,7 @@ showCategoriesList(categoriesArray);
             });
         }
         return result;
-        }
-};  
+        };  
 
     
     
