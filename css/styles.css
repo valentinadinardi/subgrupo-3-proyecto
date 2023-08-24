@@ -9,6 +9,16 @@
   font-weight: bold;
 }
 
+.user {
+  display: block;
+  color: #939696;
+padding: 0.5rem 1rem; 
+  text-decoration: none;
+transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+
+}
+.user:hover { color: #bbbcbd;}
+
 nav a {
   text-decoration: none;
 }
@@ -55,6 +65,8 @@ nav a {
 .jumbotron-heading {
   font-weight: 300;
 }
+
+
 
 .jumbotron .container {
   max-width: 40rem;
@@ -253,4 +265,5 @@ span.psw {
   from {transform: scale(0)} 
   to {transform: scale(1)}
 }
+
 

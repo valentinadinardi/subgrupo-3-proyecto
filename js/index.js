@@ -16,34 +16,23 @@ document.addEventListener("DOMContentLoaded", function(){
         window.location = "products.html"
     });
 
-    //Tarea 1 -------------------------
-
-    const inputElement = document.getElementById("uname");
-
-
-    // Obtiene el valor ingresado en el campo de entrada de texto
-    const inputValue = inputElement.value;
-
-    console.log(inputValue);
     
-    // Almacena el valor en el localStorage bajo la clave "userName"
-    localStorage.setItem("userName", inputValue);
+ //Obtenemos el item definido en login.js con la key userName
+ let storedData = localStorage.getItem("userName");
 
-    const contenedor = document.getElementById('user');
+ //Obtenemos los elementos con id user para mostrar el usuario en el html
+ let mostrarUser = document.getElementsByClassName("user");
 
-    // Obtiene el dato almacenado en el localStorage bajo la clave "userData"
-    const storedData = localStorage.getItem("userName");
+ //Para verificar que se está guardando el nombre de usuario
+ console.log(storedData);
 
-    // Comprueba si hay un dato almacenado en el localStorage
-    if (storedData) {
-      // Si hay un dato almacenado, actualiza el contenido del elemento para mostrar el dato
-      contenedor.textContent = storedData;
-    } else {
-      // Si no hay un dato almacenado, muestra un mensaje indicando que no hay datos
-      contenedor.textContent = "No hay datos almacenados.";
-  }
- 
-});} 
+ //Agregamos el nombre de usuario al html
+  //mostrarUser.textContent(storedData);
+ // Agregamos el nombre de usuario al html
+ for (let i = 0; i < mostrarUser.length; i++) {
+    mostrarUser[i].textContent = storedData;
+}
+});}
 
 else { 
    /*Si entra al else es porque los datos no se pudo obtener la clave "usuarioEstaLogueado" o esta no tiene el valor "confirmado"*/ 
