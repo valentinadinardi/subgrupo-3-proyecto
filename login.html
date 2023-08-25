@@ -19,38 +19,40 @@
 <body>
   <form class="modal-content animate" action="index.html" method="post" id="loginform">
     <div class="imgcontainer">
-      <img src="img\img_perfil.png" alt="Avatar" class="avatar">
+      <img src="img\login.png" alt="Avatar" class="avatar"> <!--Coloqué la imagen de inicio de sesión-->
     </div>
 
-    <div class="container">
-      <label for="uname"><b>Usuario</b></label>
-      <input type="text" placeholder="Introduzca su usuario" name="uname" id="uname"required>
+    <h2 class="ids">Inicio de sesión</h2> <!-- Agregue el título que aparece en la consigna-->
 
+     <!--Aquí cambie por lo que decía en la consigna-->
+
+    <div class="container">
+      <label for="uname"><b>Email</b></label>
+      <input type="text" placeholder="Introduzca su Email" name="uname" id="uname"required>
+   
       <label for="psw"><b>Contraseña</b></label>
       <input type="password" placeholder="Introduzca su contraseña" name="psw" required>
       <span class="psw"><a href="recoverPassword.html">Olvidé mi contraseña</a></span>  
         
+      <!--Aquí le coloque un id al remember para poder darle estilo-->
       <label>
         <br>
-        <input type="checkbox" checked="checked" name="remember"> Recuérdame
+        <input type="checkbox" checked="checked" name="remember" id="remember"> Recuérdame
       </label>
     </div>
 
     <div class="container" style="background-color:#f1f1f1 ">
-      <button type="submit">Iniciar sesión</button>
+      <button type="submit">Ingresar</button>
     </div>
   </form>
 </div>
 
   <footer class="text-muted">
     <div class="container">
-      <p class="float-end">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+      <!--Aquí saqué el volver arriba porque no lo vi necesario-->
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jóvenes a Programar</a></p>
     </div>
   </footer>
-  <script src="js/login.js"></script>
   <script src="js/login.js"></script>
 </body>
 

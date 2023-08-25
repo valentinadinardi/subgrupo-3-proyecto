@@ -236,13 +236,15 @@ button:hover {
   position: relative;
 }
 
+/* Arregle aquí para que se vea clara la imágen del inicio de sesión */
 img.avatar {
-  width: 10%;
-  border-radius: 50%;
+  width: 50%;
 }
-
+/*Aquí centre los títulos*/
 .container {
   padding: 16px;
+  text-align: center; /* Esto centra el contenido horizontalmente */
+  margin: 0 auto; /* Esto centra el contenedor horizontalmente en la página */
 }
 
 span.psw {
@@ -255,7 +257,10 @@ span.psw {
   -webkit-animation: animatezoom 0.6s;
   animation: animatezoom 0.6s
 }
-
+/*Aquí centre el "inicio de sesión"*/
+.ids {
+  text-align: center;
+ }
 @-webkit-keyframes animatezoom {
   from {-webkit-transform: scale(0)} 
   to {-webkit-transform: scale(1)}
