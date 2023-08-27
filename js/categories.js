@@ -102,6 +102,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         }
     });
 
+
     document.getElementById("sortAsc").addEventListener("click", function(){
         sortAndShowCategories(ORDER_ASC_BY_NAME);
     });
@@ -165,4 +166,25 @@ for (let i = 0; i < mostrarUser.length; i++) {
     window.location.href = "login.html";
 
 }
+document.addEventListener("DOMContentLoaded", function(e){//Cuando la pagina se cargue
 
+
+    const searchInput = document.getElementById('searchInput');//Obtener el texto de la busqueda
+    const articleItems = document.getElementsByClassName('list-group-item');//Obtener el listado de los elementos
+
+    searchInput.addEventListener('input', function () {//Evento para la busqueda al hacer click
+      performSearch();
+      const searchTerm = searchInput.value.toLowerCase();//Convertir todas las letras a minusculas
+      
+      for (const article of articleItems) {
+        const title = article.querySelector('h4').textContent.toLowerCase();//Obtener el valor de el nombre de la categoria
+        const description = article.querySelector('p').textContent.toLowerCase(); //Obtener el valor de la descripcion de la categoria
+        
+        if (title.includes(searchTerm) || description.includes(searchTerm)) {//Si se cumple la condicion, muestra el producto. y sino lo oculta
+          article.style.display = 'block';
+        } else {
+          article.style.display = 'none';
+        }
+      }
+    });
+});

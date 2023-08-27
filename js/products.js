@@ -84,3 +84,34 @@ if (sessionStorage.getItem("usuarioEstaLogueado") == "confirmado") {
 } else {
     window.location.href = "login.html";
 }
+
+document.addEventListener("DOMContentLoaded", function (e) { //Cuando la pagina se cargue
+    const searchInput = document.getElementById("searchInput"); //Obtener el texto de la busqueda
+    const searchButton = document.getElementById("searchButton"); //Obtener el valor enviado por el boton
+    const productItems = document.getElementsByClassName("list-group-item"); //Obtener el listado de los elementos
+
+    searchButton.addEventListener("click", function () {//Evento para la busqueda al hacer click
+      performSearch();
+    });
+
+    searchInput.addEventListener("input", function (event) {//Actualizar la busqueda al agregar un caracter
+      if (event.inputType === "insertFromPaste" || event.inputType === "insertText") {// esta parte del código detecta si el usuario ha pegado o escrito texto en el campo de búsqueda.
+        performSearch();
+      }
+    });
+
+    function performSearch() {
+      const searchTerm = searchInput.value.toLowerCase();//Convertir todas las letras a minusculas
+
+      for (const product of productItems) { 
+        const productName = product.querySelector(".mb-1 h4").textContent.toLowerCase(); //Obtener el valor de el nombre de el producto
+        const productDescription = product.querySelector(".mb-1 p").textContent.toLowerCase();//Obtener el valor de la descripcion de el producto
+
+        if (productName.includes(searchTerm) || productDescription.includes(searchTerm)) {//Si se cumple la condicion, muestra el producto. y sino lo oculta
+          product.style.display = "block";
+        } else {
+          product.style.display = "none";
+        }
+      }
+    }
+  });
