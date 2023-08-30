@@ -152,19 +152,56 @@ function sortProducts(criteria, array) {
     return array;
 }
 
+document.getElementById("clearRangeFilterP").addEventListener("click", function(){
+    document.getElementById("rangeFilterCountMinP").value = "";
+    document.getElementById("rangeFilterCountMaxP").value = "";
+
+    minCount = undefined;
+    maxCount = undefined;
+
+    showProductsList();
+});
+
+    document.addEventListener("DOMContentLoaded", function(filtrarPrecio) {
+        const minPriceInput = document.getElementById("rangeFilterCountMinP");
+        const maxPriceInput = document.getElementById("rangeFilterCountMaxP");
+        const applyFilterButton = document.getElementById("rangeFilterCountP");
+                  
+        applyFilterButton.addEventListener("click", applyPriceFilter);
+          
+        function applyPriceFilter() {
+            const minPrice = parseInt(minPriceInput.value);
+            const maxPrice = parseInt(maxPriceInput.value);
+            
+            // Obtener todos los elementos de producto (debe ser un array, no un NodeList)
+            const productItems = productListElement.getElementsByClassName("list-group-item");
+              
+            for (const product of productItems) {
+                const productPrice = parseInt(product.querySelector(".mb-1 h4").textContent.match(/\d+(\.\d+)?/)[0]);
+                
+                if ((isNaN(minPrice) || productPrice >= minPrice) &&
+                    (isNaN(maxPrice) || productPrice <= maxPrice)) {
+                    product.style.display = "block";
+                } else {
+                    product.style.display = "none";
+                }
+            }
+
+    showProductsList();
+}});
+
 document.addEventListener("DOMContentLoaded", function (e) { //Cuando la pagina se cargue
-    const searchInput = document.getElementById("searchInput"); //Obtener el texto de la busqueda
-    const searchButton = document.getElementById("searchButton"); //Obtener el valor enviado por el boton
-    const productItems = document.getElementsByClassName("list-group-item"); //Obtener el listado de los elementos
+    const searchInput = document.getElementById("searchInput");
+    const productItems = document.getElementsByClassName("list-group-item");
 
-    searchButton.addEventListener("click", function () {//Evento para la busqueda al hacer click
-      performSearch();
-    });
+    // Agregar el evento 'input' al campo de búsqueda
+    searchInput.addEventListener("input", function (event) {
+        const searchTerm = searchInput.value.toLowerCase();
 
-    searchInput.addEventListener("input", function (event) {//Actualizar la busqueda al agregar un caracter
-      if (event.inputType === "insertFromPaste" || event.inputType === "insertText") {// esta parte del código detecta si el usuario ha pegado o escrito texto en el campo de búsqueda.
-        performSearch();
-      }
+        // Verificar si el evento fue causado por borrar caracteres
+        if (event.inputType === "insertFromPaste" || event.inputType === "insertText" || event.inputType === "deleteContentBackward") {
+            performSearch(searchTerm);
+        }
     });
 
     function performSearch() {
@@ -188,4 +225,4 @@ document.addEventListener("DOMContentLoaded", function (e) { //Cuando la pagina 
     function setCatID(id) {
         localStorage.setItem("catID", id);
         window.location = "products.html"
-    }
+};
