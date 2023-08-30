@@ -7,10 +7,6 @@ let minCount = undefined;
 let maxCount = undefined;
 
 if(sessionStorage.getItem("usuarioEstaLogueado") == "confirmado") {
-    
-
-
-
 
 function sortCategories(criteria, array){
     let result = [];
