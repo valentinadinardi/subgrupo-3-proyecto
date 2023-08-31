@@ -98,7 +98,7 @@ if (sessionStorage.getItem("usuarioEstaLogueado") == "confirmado") {
     }
 
 
-    // Event listeners para ordenar productos
+    // Eventos que pasan cuando se hace click
     ORDER_ASC_BY_PRICE.addEventListener("click", function() {
         sortAndShowProducts(ORDER_ASC_BY_PRICE);
     });
@@ -152,6 +152,7 @@ function sortProducts(criteria, array) {
     return array;
 }
 
+//Funcion limpiar
 document.getElementById("clearRangeFilterP").addEventListener("click", function(){
     document.getElementById("rangeFilterCountMinP").value = "";
     document.getElementById("rangeFilterCountMaxP").value = "";
@@ -162,14 +163,18 @@ document.getElementById("clearRangeFilterP").addEventListener("click", function(
     showProductsList();
 });
 
+//Funcion filtrar
     document.addEventListener("DOMContentLoaded", function(filtrarPrecio) {
+        //Definimos variables con los inputs
         const minPriceInput = document.getElementById("rangeFilterCountMinP");
         const maxPriceInput = document.getElementById("rangeFilterCountMaxP");
         const applyFilterButton = document.getElementById("rangeFilterCountP");
-                  
+    
+        //Lo que pasa cunado se hace click en filtrar
         applyFilterButton.addEventListener("click", applyPriceFilter);
           
         function applyPriceFilter() {
+            //Parseamos a int los valores de los input y los asignamos a variables
             const minPrice = parseInt(minPriceInput.value);
             const maxPrice = parseInt(maxPriceInput.value);
             
@@ -190,6 +195,7 @@ document.getElementById("clearRangeFilterP").addEventListener("click", function(
     showProductsList();
 }});
 
+//Busqueda
 document.addEventListener("DOMContentLoaded", function (e) { //Cuando la pagina se cargue
     const searchInput = document.getElementById("searchInput");
     const productItems = document.getElementsByClassName("list-group-item");
