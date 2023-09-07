@@ -51,6 +51,11 @@ if (sessionStorage.getItem("usuarioEstaLogueado") == "confirmado") {
     } else {
         console.log("Identificador de categoría no válido");
     }
+    
+    function setProdID(id) {
+        localStorage.setItem("prodID", id);
+        window.location = "product-info.html"
+};
 
     /* Función que recibe un array con los datos y los muestra en pantalla a través del uso del DOM.
        Aquí arregle la función para mostrar la lista de productos en el HTML, 
@@ -64,7 +69,7 @@ if (sessionStorage.getItem("usuarioEstaLogueado") == "confirmado") {
 
             
             htmlContentToAppend += `
-            <div class="list-group-item list-group-item-action">
+            <div onclick="setProdID(${product.id})" class="list-group-item list-group-item-action cursor-active">
                 <div class="row">
                     <div class="col-3">
                         <img src="${product.image}" alt="product image" class="img-thumbnail">
@@ -228,7 +233,3 @@ document.addEventListener("DOMContentLoaded", function (e) { //Cuando la pagina 
 
 });
 
-    function setCatID(id) {
-        localStorage.setItem("catID", id);
-        window.location = "products.html"
-};
