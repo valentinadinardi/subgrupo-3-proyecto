@@ -37,6 +37,7 @@ function sortCategories(criteria, array){
     return result;
 }
 
+
 function setCatID(id) {
     localStorage.setItem("catID", id);
     window.location = "products.html"
@@ -72,7 +73,6 @@ function showCategoriesList(){
         document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
     }
 }
-
 function sortAndShowCategories(sortCriteria, categoriesArray){
     currentSortCriteria = sortCriteria;
 
