@@ -274,5 +274,10 @@ span.psw {
   to {transform: scale(1)}
 }
 
+/*Estilo lista ordenada*/
+ul {
+  list-style: none;
+}
+
 
 
