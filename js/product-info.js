@@ -69,6 +69,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
+//Obtener el item definido en login.js con la key userName
+let storedData = localStorage.getItem("userName");
+
+//Obtenemos los elementos con id user para mostrar el usuario en el html
+let mostrarUser = document.getElementsByClassName("user");
+
+//Agregamos el nombre de usuario al html
+for (let i = 0; i < mostrarUser.length; i++) {
+    mostrarUser[i].textContent = storedData;
+}
+
 //join("") se utiliza para unir todos los fragmentos HTML en una sola cadena de texto.//
 //map es un método de JavaScript que se utiliza para iterar sobre cada elemento del array//
   
