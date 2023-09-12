@@ -1,32 +1,45 @@
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Obtenemos el ID del producto guardado en el almacenamiento local
-    const productId = localStorage.getItem("prodID");
-  
-    // Verificamos si se ha guardado un ID de producto
-    if (productId) {
-      // Construimos la URL para obtener la información del producto
-      const productURL = `https://japceibal.github.io/emercado-api/products/${productId}.json`;
-  
-      // Realizamos la solicitud GET para obtener la información del producto mediante un fetch
-      fetch(productURL)
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (productData) {
-          // Accedemos a los campos de información del producto (guiado por la API)
-          const productName = productData.name;
-          const productDescription = productData.description;
-          const productCost = productData.cost;
-          const productCurrency = productData.currency;
-          const productSoldCount = productData.soldCount;
-          const productCategory = productData.category;
-          const productImages = productData.images;
-          const relatedProducts = productData.relatedProducts;
-  
-          // Mostramos la información del producto en el HTML que para eso añadimos el container
-          const productInfoContainer = document.getElementById("product-info-container");
-          productInfoContainer.innerHTML = `
+  // Obtenemos el ID del producto guardado en el almacenamiento local
+  const productId = localStorage.getItem("prodID");
+
+  function generateStars(score) {
+    let stars = '';
+    for(let i = 1; i <= 5; i++) {
+        if(i <= score) {
+            stars += '<span class="fa fa-star checked"></span>';
+        } else {
+            stars += '<span class="fa fa-star"></span>';
+        }
+    }
+    return stars;
+}
+
+  // Verificamos si se ha guardado un ID de producto
+  if (productId) {
+    // Construimos la URL para obtener la información del producto
+    const productURL = `https://japceibal.github.io/emercado-api/products/${productId}.json`;
+
+    // Realizamos la solicitud GET para obtener la información del producto mediante un fetch
+    fetch(productURL)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (productData) {
+        // Accedemos a los campos de información del producto (guiado por la API)
+        const productName = productData.name;
+        const productDescription = productData.description;
+        const productCost = productData.cost;
+        const productCurrency = productData.currency;
+        const productSoldCount = productData.soldCount;
+        const productCategory = productData.category;
+        const productImages = productData.images;
+        const relatedProducts = productData.relatedProducts;
+        const id = productData.id
+
+        // Mostramos la información del producto en el HTML que para eso añadimos el container
+        const productInfoContainer = document.getElementById("product-info-container");
+        productInfoContainer.innerHTML = `
             <h1 class="text-start">${productName}</h1>
             <hr/>
             <p class="text-start"><strong> Precio:</strong></p>
@@ -58,17 +71,56 @@ document.addEventListener("DOMContentLoaded", function () {
                      ${relatedProducts.map(relatedProduct => `<li>${relatedProduct.name}</li>`).join("")}
                    </ul>
             </div>
-
+            ${id}
           `;
-        })
-        .catch(function (error) {
-          console.error("Error al obtener la información del producto:", error);
-        });
-    } else {
-      console.error("No se encontró un ID de producto en el almacenamiento local.");
-    }
-});
+      })
+      .catch(function (error) {
+        console.error("Error al obtener la información del producto:", error);
+      });
 
+    const commentsURL = `https://japceibal.github.io/emercado-api/products_comments/${productId}.json`;
+
+    fetch(commentsURL)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (commentsData) {
+        // Accedemos a los comentarios de usuarios y los mostramos en el HTML
+        const commentsContainer = document.getElementById("comments-container");
+        
+        let allCommentsHTML = '<h2>Comentarios:</h2>';  // Inicializamos una variable para construir el contenido HTML
+    
+        for(let comment of commentsData) {
+            const cliente = comment.user;
+            const fecha = comment.dateTime;
+            const comentario = comment.description;
+            const puntos = comment.score;
+            const starsRepresentation = generateStars(puntos);
+            
+            // Añadimos el comentario a la variable allCommentsHTML
+            allCommentsHTML += `
+                <hr>
+                <ul>
+                    <li>
+                        <p>${cliente}    ${fecha} ${starsRepresentation}</p>
+                        <p>${comentario}</p>
+                    </li>
+                </ul>
+            `;
+        }
+    
+        // Actualizamos el contenido de commentsContainer con todos los comentarios
+        commentsContainer.innerHTML = allCommentsHTML;
+    })
+
+      .catch(function (error) {
+        console.error("Error al obtener los comentarios:", error);
+      });
+
+  } else {
+    console.error("No se encontró un ID de producto en el almacenamiento local.");
+  }
+});
 //Obtener el item definido en login.js con la key userName
 let storedData = localStorage.getItem("userName");
 
@@ -77,9 +129,8 @@ let mostrarUser = document.getElementsByClassName("user");
 
 //Agregamos el nombre de usuario al html
 for (let i = 0; i < mostrarUser.length; i++) {
-    mostrarUser[i].textContent = storedData;
+  mostrarUser[i].textContent = storedData;
 }
 
 //join("") se utiliza para unir todos los fragmentos HTML en una sola cadena de texto.//
 //map es un método de JavaScript que se utiliza para iterar sobre cada elemento del array//
-  
