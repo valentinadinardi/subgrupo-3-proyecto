@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   // Obtenemos el ID del producto guardado en el almacenamiento local
   const productId = localStorage.getItem("prodID");
-
+// Creamos la funcion que detecta el nuemro de estrelas y las muestra en pantalla
   function generateStars(score) {
     let stars = '';
     for(let i = 1; i <= 5; i++) {
@@ -78,7 +78,9 @@ document.addEventListener("DOMContentLoaded", function () {
         console.error("Error al obtener la información del producto:", error);
       });
 
+      //creamos la constante para la URL de los comentarios.
     const commentsURL = `https://japceibal.github.io/emercado-api/products_comments/${productId}.json`;
+
 
     fetch(commentsURL)
       .then(function (response) {
@@ -121,6 +123,9 @@ document.addEventListener("DOMContentLoaded", function () {
     console.error("No se encontró un ID de producto en el almacenamiento local.");
   }
 });
+
+
+
 //Obtener el item definido en login.js con la key userName
 let storedData = localStorage.getItem("userName");
 
