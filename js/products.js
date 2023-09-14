@@ -44,6 +44,17 @@ if (sessionStorage.getItem("usuarioEstaLogueado") == "confirmado") {
 
                 // Llama a la función para mostrar la lista de productos en el HTML
                 showProductsList(productsArray);
+               // Obtiene el nombre de la categoría
+            const catName = data.catName; // Asegúrate de que "catName" sea la propiedad correcta en tu objeto de datos
+
+                // Obtén el elemento con el id "titulo"
+                const catDescripcion = document.getElementById("catDescripcion");
+
+                // Actualiza el contenido del elemento "titulo" con el nombre de la categoría
+                catDescripcion.textContent = `Verás aquí todos los productos de la categoría ${catName}`;
+
+
+                
             })
             .catch(function(error) {
                 console.log("Error al cargar los productos:", error);
@@ -62,6 +73,7 @@ if (sessionStorage.getItem("usuarioEstaLogueado") == "confirmado") {
        agregandole un products*/
     function showProductsList(productsArray) {
         let htmlContentToAppend = "";
+        
 
         
         for (let i = 0; i < productsArray.length; i++) {
@@ -202,6 +214,9 @@ document.getElementById("clearRangeFilterP").addEventListener("click", function(
 
 //Busqueda
 document.addEventListener("DOMContentLoaded", function (e) { //Cuando la pagina se cargue
+
+    
+
     const searchInput = document.getElementById("searchInput");
     const productItems = document.getElementsByClassName("list-group-item");
 
